@@ -1,1 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'variables';
+@use 'mixins';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: variables.$font_family_main;
+}
+
+body {
+    min-height: 100dvh;
+    margin: 0;
+    background: variables.$bg_main;
+    display: grid;
+    place-items: center;
+}
+
+p,
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+p {
+    line-height: 1.5;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+legend {
+    padding: 0;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    appearance: none;
+    margin: 0;
+}
+
+label {
+    font-size: .875rem;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+button {
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    &:focus-visible {
+        @include mixins.focus-visible;
+    }
+}
+
+.sr_only {
+    width: .0625rem;
+    height: .0625rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
+    position: absolute;
+}

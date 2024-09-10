@@ -1,0 +1,415 @@
+@use '../../../variables';
+@use '../../../mixins';
+
+form {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.form_wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 100%);
+    align-items: start;
+    transition: transform variables.$transition_duration;
+    fieldset {
+        min-height: 100%;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: minmax(0, 28.125rem);
+        justify-content: center;
+        visibility: hidden;
+        transition: transform variables.$transition_duration, visibility variables.$transition_duration;
+        legend {
+            width: 100%;
+            padding: 2.5rem 0;
+            display: grid;
+            grid-template-columns: minmax(0, 28.125rem);
+            justify-content: center;
+            h2 {
+                margin-bottom: .75rem;
+            }
+            span {
+                color: variables.$clr_font_third;
+            }
+        }
+    }
+    @for $i from 0 through 3 {
+        &[data-step='#{$i + 1}'] {
+            transform: translateX(calc(#{$i} * -100%));
+            fieldset:nth-child(#{$i + 1}) {
+                visibility: visible;
+            }
+        }
+    }
+    &.confirmed {
+        fieldset {
+            transform: translateY(-100%);
+            visibility: hidden;
+        }
+        + .form_action_btns {
+            visibility: hidden;
+        }
+        ~ .confirmation {
+            transform: translateY(0);
+            visibility: visible;
+        }
+    }
+}
+
+.form_control {
+    margin-bottom: 1.375rem;
+    > div {
+        margin-bottom: .375rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+        outline: 1px solid variables.$clr_border_main;
+        border-radius: 10px;
+        cursor: pointer;
+        &::placeholder {
+            color: variables.$clr_font_third;
+        }
+        &:focus {
+            outline-color: variables.$clr_border_third !important;
+        }
+        &.error {
+            outline-color: rgba(216, 69, 88, 1);
+        }
+    }
+    &_error {
+        color: rgba(216, 69, 88, 1);
+        font-size: .875rem;
+        font-weight: 700;
+    }
+}
+
+.plan_types_wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 1rem;
+}
+
+.plan_type {
+    &_card {
+        padding: 1.25rem 1rem 1rem;
+        position: relative;
+        label {
+            border: 1px solid variables.$clr_border_main;
+            border-radius: 10px;
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            transition: border-color variables.$transition_duration, background variables.$transition_duration;
+            &:hover {
+                border-color: variables.$clr_border_third;
+            }
+        }
+        input:focus-visible + label {
+            @include mixins.focus-visible;
+        }
+        input:checked + label {
+            background: rgba(248, 249, 254, 1);
+            border-color: variables.$clr_border_third;
+        }
+        img, .plan_type_info {
+            position: relative;
+            z-index: 2;
+            pointer-events: none;
+        }
+    }
+    &_info {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        pointer-events: none;
+        z-index: 1;
+        span {
+            &:nth-child(1) {
+                font-weight: 700;
+            }
+            &:nth-child(2) {
+                color: variables.$clr_font_third;
+                font-size: .875rem;
+            }
+        }
+        small {
+            color: rgba(3, 40, 90, 1);
+            font-size: .75rem;
+        }
+    }
+}
+
+.billing {
+    &_wrapper {
+        margin: 2rem 0 .5rem;
+        padding: 1rem 0;
+        background: variables.$bg_third;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        position: relative;
+        input {
+            position: absolute;
+            left: 0;
+        }
+        label {
+            color: variables.$clr_font_third;
+            font-weight: 500;
+            transition: color variables.$transition_duration;
+        }
+        input:checked + label {
+            color: rgba(3, 40, 90, 1);
+        }
+        input:focus-visible + label {
+            outline: 2px solid rgba(3, 40, 90, 1);
+            outline-offset: 0.25rem;
+        }
+    }
+    &_switch_btn {
+        $switch_btn_width: 2.375rem;
+        $switch_btn_before_width: .75rem;
+        $swith_btn_left: .3125rem;
+        width: $switch_btn_width;
+        height: 1.25rem;
+        background: rgba(3, 40, 90, 1);
+        border-radius: 100px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        &:focus-visible {
+            outline: 2px solid rgba(3, 40, 90, 1);
+            outline-offset: 4px;
+        }
+        &::before {
+            content: '';
+            width: $switch_btn_before_width;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            transition: transform variables.$transition_duration;
+            position: absolute;
+            left: $swith_btn_left;
+        }
+        &.switched::before {
+            transform: translateX(calc($switch_btn_width - $switch_btn_before_width - $switch_btn_before_width / 2 - $swith_btn_left));
+        }
+    }
+}
+
+.add_on_card {
+    margin-bottom: 1rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    position: relative;
+    label {
+        border: 1px solid variables.$clr_border_main;
+        border-radius: 10px;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        transition: background variables.$transition_duration, border-color variables.$transition_duration;
+        &:hover {
+            border-color: rgba(3, 40, 90, 1);
+        }
+    }
+    input {
+        position: absolute;
+        left: 0;
+        &:focus-visible + label {
+            @include mixins.focus-visible;
+        }
+        &:checked + label {
+            background: rgba(248, 249, 254, 1);
+            border-color: rgba(3, 40, 90, 1);
+        }
+    }
+    &_fake_checkbox {
+        min-width: 1.25rem;
+        aspect-ratio: 1;
+        background: transparent;
+        border: 1px solid variables.$clr_border_main;
+        border-radius: 5px;
+        position: relative;
+        z-index: 1;
+        pointer-events: none;
+    }
+    input:checked ~ .add_on_card_fake_checkbox {
+        background: rgba(3, 40, 90, 1) url('/images/icon-checkmark.svg') no-repeat;
+        background-size: .75rem;
+        background-position: center;
+        border-color: rgba(3, 40, 90, 1);
+    }
+    &_info {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        position: relative;
+        z-index: 1;
+        pointer-events: none;
+        span {
+            &:nth-child(1) {
+                font-weight: 700;
+            }
+            &:nth-child(2) {
+                color: variables.$clr_font_third;
+                font-size: .875rem;
+            }
+        }
+    }
+    &_price {
+        margin-left: auto;
+        color: rgba(3, 40, 90, 1);
+        font-size: .875rem;
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
+        pointer-events: none;
+    }
+}
+
+.summary {
+    &_inner {
+        padding: 1.5rem;
+        background: rgba(248, 249, 254, 1);
+        border-radius: 10px;
+    }
+    &_plan {
+        padding-bottom: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        > div {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: .375rem;
+            button {
+                background: transparent;
+                color: variables.$clr_font_third;
+                font-size: .9375rem;
+                text-decoration: underline;
+                &:hover {
+                    color: rgba(3, 40, 90, 1);
+                }
+            }
+        }
+        span {
+            font-weight: 700;
+        }
+    }
+    &_add_ons {
+        border-top: 1px solid variables.$clr_border_main;
+        > div {
+            margin-top: 1.25rem;
+            color: variables.$clr_font_third;
+            font-size: .875rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    &_total {
+        padding: 1.5rem;
+        color: variables.$clr_font_third;
+        font-size: .875rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span:nth-child(2) {
+            color: rgba(3, 40, 90, 1);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+    }
+}
+
+.form_action_btns {
+    width: 100%;
+    padding: 0 1rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 28.125rem);
+    place-content: center;
+    &_inner {
+        display: flex;
+        justify-content: space-between;
+    }
+    button {
+        padding: 1rem 0;
+        background: transparent;
+        font-weight: 500;
+        text-transform: capitalize;
+        border-radius: 10px;
+    }
+    .back_btn {
+        width: 4.375rem;
+        color: variables.$clr_font_third;
+        font-size: 1rem;
+        &:hover {
+            color: variables.$clr_font_main;
+        }
+        &.hidden {
+            visibility: hidden;
+        }
+    }
+    .next_btn {
+        width: 7.5rem;
+        background: variables.$bg_next_btn;
+        color: variables.$clr_font_second;
+        &:hover {
+            background: variables.$bg_next_btn_hover;
+        }
+        span {
+            font-size: 1rem;
+            font-weight: 500;
+            &:nth-child(2) {
+                display: none;
+            }
+        }
+        &.confirm {
+            span:nth-child(1) {
+                display: none;
+            }
+            span:nth-child(2) {
+                display: block;
+            }
+        }
+    }
+}
+
+.confirmation {
+    padding: 0 1rem;
+    background: variables.$bg_second;
+    text-align: center;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    transform: translateY(100%);
+    visibility: hidden; 
+    transition: transform variables.$transition_duration, visibility variables.$transition_duration;
+    h2 {
+        margin: 2rem 0 1rem;
+    }
+    p {
+        max-width: 50ch;
+        color: variables.$clr_font_third;
+    }
+}

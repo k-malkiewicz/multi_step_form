@@ -1,0 +1,10 @@
+<ol class="form_steps">
+    @for(step of formSteps; let i = $index; track i) {
+        <li [class.current]="(i + 1) === multiStepFormService.currentFormStep">
+            <div>
+                <span>Step {{ i + 1 }}</span>
+                <span>{{ step }}</span>
+            </div>
+        </li>
+    }
+</ol>

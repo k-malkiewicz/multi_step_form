@@ -1,0 +1,13 @@
+@use '../variables';
+
+main {
+    width: 100%;
+    max-width: 58.75rem;
+    padding: 1rem 0 1rem 1rem;
+    background: variables.$bg_second;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 17.1875rem auto;
+    grid-template-rows: minmax(35.625rem, auto);
+    overflow: hidden;
+}

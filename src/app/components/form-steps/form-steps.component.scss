@@ -1,0 +1,54 @@
+@use '../../../variables';
+
+.form_steps {
+    height: 100%;
+    padding: 2.375rem 2rem;
+    background: url('/images/bg-sidebar-desktop.svg') no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    counter-reset: list-item;
+    li {
+        color: variables.$clr_font_second;
+        text-transform: uppercase;
+        counter-increment: list-item;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        &::before {
+            width: 2.125rem;
+            aspect-ratio: 1;
+            font-size: .8125rem;
+            font-weight: 500;
+            border: 2px solid variables.$clr_border_second;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+            transition: background variables.$transition_duration, color variables.$transition_duration, border-color variables.$transition_duration;
+            content: counter(list-item);
+        }
+        &.current::before {
+            background: variables.$bg_step_current;
+            color: variables.$clr_font_main;
+            border-color: variables.$bg_step_current;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: .1875rem;
+        }
+        span {
+            &:nth-child(1) {
+                color: variables.$clr_font_third;
+                font-size: .8125rem;
+            }
+            &:nth-child(2) {
+                font-size: .9375rem;
+                font-weight: 500;
+                letter-spacing: .0625rem;
+            }
+        }
+    }
+}
