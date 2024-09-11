@@ -10,4 +10,14 @@ main {
     grid-template-columns: 17.1875rem auto;
     grid-template-rows: minmax(35.625rem, auto);
     overflow: hidden;
+    position: relative;
+}
+
+@media (max-width: 43.75rem) {
+    main {
+        padding: 97px 1rem 0;
+        background: none;
+        display: block;
+        overflow: visible;
+    }
 }
