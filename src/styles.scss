@@ -83,3 +83,10 @@ button {
         font-size: 13px;
     }
 }
+
+@media (prefers-reduced-motion) {
+    * {
+        transition: none 0s !important;
+        animation: none !important;
+    }
+}
