@@ -1,10 +1,10 @@
 <form action="javascript:void(0)" [formGroup]="form">
     <div class="form_wrapper" [attr.data-step]="multiStepFormService.currentFormStep" [class.confirmed]="confirmBtnClicked">
-        <fieldset formGroupName="personalInfo">
-            <legend>
+        <div formGroupName="personalInfo">
+            <div>
                 <h2>Personal info</h2>
-                <span>Please provide your name, email address and phone number.</span>
-            </legend>
+                <p>Please provide your name, email address and phone number.</p>
+            </div>
             <div class="form_control">
                 <div>
                     <label for="name">Name</label>
@@ -34,12 +34,13 @@
                 </div>
                 <input type="tel" name="phoneNumber" [class.error]="phoneNumber?.errors && nextBtnClicked" id="phoneNumber" formControlName="phoneNumber" placeholder="e.g. +1 234 567 890">
             </div>
-        </fieldset>
-        <fieldset>
-            <legend>
+        </div>
+
+        <div>
+            <div>
                 <h2>Select your plan</h2>
-                <span>You have the option of monthly or yearly billing.</span>
-            </legend>
+                <p>You have the option of monthly or yearly billing.</p>
+            </div>
             <div class="plan_types_wrapper">
                 @for (planType of planTypes; let i = $index; track planType.name) {
                     <div class="plan_type_card">
@@ -69,12 +70,12 @@
             @if (planType?.errors && nextBtnClicked) {
                 @if (planType?.errors?.['required']) { <span class="form_control_error">Please select a plan type</span> }
             }
-        </fieldset>
-        <fieldset>
-            <legend>
+        </div>
+        <div>
+            <div>
                 <h2>Pick add-ons</h2>
-                <span>Add-ons help enhance your gaming experience.</span>
-            </legend>
+                <p>Add-ons help enhance your gaming experience.</p>
+            </div>
             <div class="add_ons_wrapper">
                 @for (addOn of addOns; let i = $index; track addOn.name) {
                     <div class="add_on_card">
@@ -94,12 +95,12 @@
                     </div>
                 }
             </div>
-        </fieldset>
-        <fieldset>
-            <legend>
+        </div>
+        <div>
+            <div>
                 <h2>Finishing up</h2>
-                <span>Double-check everything looks OK before confirming.</span>
-            </legend>
+                <p>Double-check everything looks OK before confirming.</p>
+            </div>
             <div class="summary">
                 <div class="summary_inner">
                     <div class="summary_plan">
@@ -133,7 +134,7 @@
                     <span>{{ totalPrice }}</span>
                 </div>
             </div>
-        </fieldset>
+        </div>
     </div>
     <div class="form_action_btns">
         <div class="form_action_btns_inner">
