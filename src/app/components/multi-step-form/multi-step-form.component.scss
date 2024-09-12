@@ -145,7 +145,6 @@ form {
             }
         }
         small {
-            color: rgba(3, 40, 90, 1);
             font-size: .75rem;
         }
     }
@@ -273,7 +272,6 @@ form {
     }
     &_price {
         margin-left: auto;
-        color: rgba(3, 40, 90, 1);
         font-size: .875rem;
         font-weight: 500;
         position: relative;
@@ -304,7 +302,7 @@ form {
                 font-size: .9375rem;
                 text-decoration: underline;
                 &:hover {
-                    color: rgba(3, 40, 90, 1);
+                    color: variables.$clr_font_main;
                 }
             }
         }
@@ -331,7 +329,7 @@ form {
         justify-content: space-between;
         align-items: center;
         span:nth-child(2) {
-            color: rgba(3, 40, 90, 1);
+            color: variables.$clr_font_main;
             font-size: 1.25rem;
             font-weight: 700;
         }

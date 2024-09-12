@@ -12,6 +12,7 @@ body {
     min-height: 100dvh;
     margin: 0;
     background: variables.$bg_main;
+    color: variables.$clr_font_main;
     display: grid;
     place-items: center;
 }
