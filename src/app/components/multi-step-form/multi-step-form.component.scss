@@ -15,15 +15,16 @@ form {
     grid-template-columns: repeat(4, 100%);
     align-items: start;
     transition: transform variables.$transition_duration;
-    fieldset {
+    .form_part {
         min-height: 100%;
         padding: 0 1rem;
         display: grid;
         grid-template-columns: minmax(0, 28.125rem);
+        align-content: start;
         justify-content: center;
         visibility: hidden;
         transition: transform variables.$transition_duration, visibility variables.$transition_duration;
-        legend {
+        .form_part_intro {
             width: 100%;
             padding: 2.5rem 0;
             display: grid;
@@ -32,22 +33,21 @@ form {
             h2 {
                 margin-bottom: .75rem;
             }
-            span {
+            p {
                 color: variables.$clr_font_third;
-                line-height: 1.5;
             }
         }
     }
     @for $i from 0 through 3 {
         &[data-step='#{$i + 1}'] {
             transform: translateX(calc(#{$i} * -100%));
-            fieldset:nth-child(#{$i + 1}) {
+            .form_part:nth-child(#{$i + 1}) {
                 visibility: visible;
             }
         }
     }
     &.confirmed {
-        fieldset {
+        .form_part {
             transform: translateY(-100%);
             visibility: hidden;
         }
@@ -84,11 +84,11 @@ form {
             outline-color: variables.$clr_border_third !important;
         }
         &.error {
-            outline-color: rgba(216, 69, 88, 1);
+            outline-color: variables.$clr_error;
         }
     }
     &_error {
-        color: rgba(216, 69, 88, 1);
+        color: variables.$clr_error;
         font-size: .875rem;
         font-weight: 700;
     }
@@ -359,13 +359,16 @@ form {
         font-weight: 500;
         text-transform: capitalize;
         border-radius: 10px;
+        transition: background variables.$transition_duration;
         &.back_btn {
             width: 4.375rem;
             color: variables.$clr_font_third;
+            transition: transform variables.$transition_duration, visibility variables.$transition_duration, color variables.$transition_duration;
             &:hover {
                 color: variables.$clr_font_main;
             }
             &.hidden {
+                transform: translateY(100dvh);
                 visibility: hidden;
             }
         }
@@ -383,6 +386,10 @@ form {
                 }
             }
             &.confirm {
+                background: variables.$bg_confirm_btn;
+                &:hover {
+                    background: variables.$bg_confirm_btn_hover;
+                }
                 span:nth-child(1) {
                     display: none;
                 }
@@ -418,11 +425,11 @@ form {
 
 @media(max-width: 43.75rem) {  
     .form_wrapper {
-        fieldset {
+        .form_part {
             background: variables.$bg_second;
             min-height: auto;
-            padding: 0 1.5625rem 20px;
-            legend {
+            padding: 0 1.5625rem 1.25rem;
+            &_intro {
                 background: variables.$bg_second;
                 padding: 1.875rem 0 1.25rem;
             }

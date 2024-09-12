@@ -3,17 +3,19 @@ $bg_second: rgba(255, 255, 255, 1);
 $bg_third: rgba(248, 249, 254, 1);
 
 $bg_step_current: rgba(190, 224, 253, 1);
-$bg_next_btn: rgba(72, 62, 253, 1);
-$bg_next_btn_hover: rgba(147, 140, 254, 1);
+$bg_next_btn: rgba(1, 40, 88, 1);
+$bg_next_btn_hover: rgba(23, 74, 139, 1);
+$bg_confirm_btn: rgba(72, 61, 253, 1);
+$bg_confirm_btn_hover: rgba(147, 140, 247, 1);
 
 $clr_font_main: rgba(9, 40, 81, 1);
 $clr_font_second: rgba(215, 220, 254, 1);
-$clr_font_third: rgba(174, 174, 180, 1);
+$clr_font_third: rgba(150, 153, 171, 1);
 
 $clr_border_main: rgba(242, 241, 245, 1);
 $clr_border_second: rgba(191, 187, 217, 1);
 $clr_border_third: rgba(75, 64, 241, 1);
 
+$clr_error: rgba(216, 69, 88, 1);
 $font_family_main: 'Ubuntu', sans-serif;
-
 $transition_duration: .35s;
