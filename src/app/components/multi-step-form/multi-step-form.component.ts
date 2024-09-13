@@ -12,7 +12,7 @@ import { AddOn } from '../../interfaces/add_on.interface';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './multi-step-form.component.html',
-  styleUrl: './multi-step-form.component.scss'
+  styleUrl: './multi-step-form.component.scss',
 })
 export class MultiStepFormComponent {
   form: FormGroup;
