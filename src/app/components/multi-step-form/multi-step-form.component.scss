@@ -421,7 +421,7 @@ form {
     }
 }
 
-@media(max-width: 43.75rem) {  
+@media (max-width: 43.75rem) {  
     .form_wrapper {
         .form_part {
             background: variables.$bg_second;
@@ -430,6 +430,12 @@ form {
             &_intro {
                 background: variables.$bg_second;
                 padding: 1.875rem 0 1.25rem;
+            }
+        }
+        &.confirmed {
+            + .form_action_btns {
+                transform: translateY(100%);
+                visibility: hidden;
             }
         }
     }
@@ -528,6 +534,7 @@ form {
         position: fixed;
         bottom: 0;
         left: 0;
+        transition: transform variables.$transition_duration;
         button {
             padding: .75rem 0;
             font-size: 0.875rem;
