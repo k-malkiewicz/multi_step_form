@@ -1,0 +1,25 @@
+<div>
+    <div class="form_part_intro">
+        <h2>Pick add-ons</h2>
+        <p>Add-ons help enhance your gaming experience.</p>
+    </div>
+    <div class="add_ons_wrapper">
+        @for (addOn of addOns; let i = $index; track addOn.name) {
+            <div class="add_on_card">
+                <input type="checkbox" name="addOn" id="addOn{{ i }}" [value]="addOn.name" formControlName="addOns" (change)="handleSelectedAddOns(addOn)">
+                <label for="addOn{{ i }}">
+                    <span class="sr_only">{{ addOn.name }}</span>
+                </label>
+                <div class="add_on_card_fake_checkbox"></div>
+                <div class="add_on_card_info">
+                    <span>{{ addOn.name }}</span>
+                    <span>{{ addOn.description }}</span>
+                </div>
+                <span class="add_on_card_price">
+                    @if (formService.billing?.getRawValue() === 'monthly') { +${{ addOn.price.monthly }}/mo }
+                    @if (formService.billing?.getRawValue() === 'yearly') { +${{ addOn.price.yearly }}/yr }
+                </span>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div [formGroup]="formService.personalInfo">
+    <div class="form_part_intro">
+        <h2>Personal info</h2>
+        <p>Please provide your name, email address and phone number.</p>
+    </div>
+    <div class="form_control">
+        <div>
+            <label for="name">Name</label>
+            @if (formService.name?.errors && formService.nextBtnClicked) {
+                @if (formService.name?.errors?.['required']) { <span class="form_control_error">This field is required</span> }
+            }
+        </div>
+        <input type="text" name="name" [class.error]="formService.name?.errors && formService.nextBtnClicked" id="name" formControlName="name" placeholder="e.g. Stephen King">
+    </div>
+    <div class="form_control">
+        <div>
+            <label for="email">Email address</label>
+            @if (formService.email?.errors && formService.nextBtnClicked) {
+                @if (formService.email?.errors?.['required']) { <span class="form_control_error">This field is required</span> }
+                @if (formService.email?.errors?.['invalidEmailFormat']) { <span class="form_control_error">Invalid email format</span> }
+            }
+        </div>
+        <input type="email" name="email" [class.error]="formService.email?.errors && formService.nextBtnClicked" id="email" formControlName="email" placeholder="e.g. stephenking@lorem.com">
+    </div>
+    <div class="form_control">
+        <div>
+            <label for="phoneNumber">Phone number</label>
+            @if (formService.phoneNumber?.errors && formService.nextBtnClicked) {
+                @if (formService.phoneNumber?.errors?.['required']) { <span class="form_control_error">This field is required</span> }
+                @if (formService.phoneNumber?.errors?.['invalidPhoneNumberFormat']) { <span class="form_control_error">Invalid phone number format</span> }
+            }
+        </div>
+        <input type="tel" name="phoneNumber" [class.error]="formService.phoneNumber?.errors && formService.nextBtnClicked" id="phoneNumber" formControlName="phoneNumber" placeholder="e.g. +1 234 567 890">
+    </div>
+</div>

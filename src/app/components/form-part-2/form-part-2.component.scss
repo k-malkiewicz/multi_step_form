@@ -1,0 +1,145 @@
+@use '../../../variables';
+@use '../../../mixins';
+
+.plan_types_wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 1rem;
+}
+
+.plan_type {
+    &_card {
+        padding: 1.25rem 1rem 1rem;
+        position: relative;
+        label {
+            border: 1px solid variables.$clr_border_main;
+            border-radius: 10px;
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            transition: border-color variables.$transition_duration, background variables.$transition_duration;
+            &:hover {
+                border-color: variables.$clr_border_third;
+            }
+        }
+        input:focus-visible + label {
+            @include mixins.focus-visible;
+        }
+        input:checked + label {
+            background: rgba(248, 249, 254, 1);
+            border-color: variables.$clr_border_third;
+        }
+        img, .plan_type_info {
+            position: relative;
+            z-index: 2;
+            pointer-events: none;
+        }
+    }
+    &_info {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        pointer-events: none;
+        z-index: 1;
+        span {
+            &:nth-child(1) {
+                font-weight: 700;
+            }
+            &:nth-child(2) {
+                color: variables.$clr_font_third;
+                font-size: .875rem;
+            }
+        }
+        small {
+            font-size: .75rem;
+        }
+    }
+}
+
+.billing {
+    &_wrapper {
+        margin: 2rem 0 .5rem;
+        padding: 1rem 0;
+        background: variables.$bg_third;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        position: relative;
+        input {
+            position: absolute;
+            left: 0;
+        }
+        label {
+            color: variables.$clr_font_third;
+            font-weight: 500;
+            transition: color variables.$transition_duration;
+        }
+        input:checked + label {
+            color: rgba(3, 40, 90, 1);
+        }
+        input:focus-visible + label {
+            outline: 2px solid rgba(3, 40, 90, 1);
+            outline-offset: 0.25rem;
+        }
+    }
+    &_switch_btn {
+        $switch_btn_width: 2.375rem;
+        $switch_btn_before_width: .75rem;
+        $swith_btn_left: .3125rem;
+        width: $switch_btn_width;
+        height: 1.25rem;
+        background: rgba(3, 40, 90, 1);
+        border-radius: 100px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        &:focus-visible {
+            outline: 2px solid rgba(3, 40, 90, 1);
+            outline-offset: 4px;
+        }
+        &::before {
+            content: '';
+            width: $switch_btn_before_width;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            transition: transform variables.$transition_duration;
+            position: absolute;
+            left: $swith_btn_left;
+        }
+        &.switched::before {
+            transform: translateX(calc($switch_btn_width - $switch_btn_before_width - $switch_btn_before_width / 2 - $swith_btn_left));
+        }
+    }
+}
+
+@media (max-width: 43.75rem) {  
+    .plan_types_wrapper {
+        grid-template-columns: 100%;
+        gap: .75rem;
+    }
+
+    .plan_type {
+        &_card {
+            padding: 1.25rem 0;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+        &_info {
+            margin-top: 0;
+            gap: 5px;
+        }
+    }
+
+    .billing {
+        &_wrapper {
+            margin-top: 1.5rem;
+            label {
+                font-size: .875rem;
+            }
+        }
+    }
+}

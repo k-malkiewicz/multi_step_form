@@ -1,0 +1,39 @@
+<div>
+    <div class="form_part_intro">
+        <h2>Finishing up</h2>
+        <p>Double-check everything looks OK before confirming.</p>
+    </div>
+    <div class="summary">
+        <div class="summary_inner">
+            <div class="summary_plan">
+                <div>
+                    <span>{{ formService.selectedPlanType?.name }} ({{ formService.billing?.value | titlecase }})</span>
+                    <button (click)="goToSelectPlan()">Change</button>
+                </div>
+                <span>
+                    @if (formService.selectedPlanType) {
+                        @if (formService.billing?.value === 'monthly') { ${{ formService.selectedPlanType.price.monthly }}/mo }
+                        @if (formService.billing?.value === 'yearly') { ${{ formService.selectedPlanType.price.yearly }}/yr }
+                    }
+                </span>
+            </div>
+            @if (formService.selectedAddOns.length > 0) { 
+                <div class="summary_add_ons">
+                    @for (addOn of formService.selectedAddOns; track addOn.name) {
+                        <div>
+                            <span>{{ addOn.name }}</span>
+                            <span>
+                                @if (formService.billing?.value === 'monthly') { +${{ addOn.price.monthly }}/mo }
+                                @if (formService.billing?.value === 'yearly') { +${{ addOn.price.yearly }}/yr }
+                            </span>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="summary_total">
+            <span>Total (per {{ formService.billing?.value === 'monthly' ? 'month' : 'year' }})</span>
+            <span>{{ formService.totalPrice }}</span>
+        </div>
+    </div>
+</div>
