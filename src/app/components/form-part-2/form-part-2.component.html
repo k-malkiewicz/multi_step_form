@@ -25,7 +25,7 @@
     <div class="billing_wrapper">
         <input type="radio" name="billing" id="monthly" formControlName="billing" value="monthly" checked #monthlyBilling>
         <label for="monthly">Monthly</label>
-        <button class="billing_switch_btn" (click)="handleBillingToggleBtn(monthlyBilling, yearlyBilling)" [class.switched]="yearlyBilling.checked ? true : false"></button>
+        <button class="billing_switch_btn" [attr.aria-label]="yearlyBilling.checked ? 'Switch to monthly billing' : 'Switch to yearly billing'" (click)="handleBillingToggleBtn(monthlyBilling, yearlyBilling)" [class.switched]="yearlyBilling.checked ? true : false"></button>
         <input type="radio" name="billing" id="yearly" formControlName="billing" value="yearly" #yearlyBilling>
         <label for="yearly">Yearly</label>
     </div>
