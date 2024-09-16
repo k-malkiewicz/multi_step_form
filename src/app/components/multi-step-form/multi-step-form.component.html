@@ -1,4 +1,3 @@
-<p style="position: fixed; top: 0;">{{ multiStepFormService.form.value | json }}</p>
 <form action="javascript:void(0)" [formGroup]="multiStepFormService.form">
     <div class="form_wrapper" [attr.data-step]="multiStepFormService.currentFormStep" [class.confirmed]="multiStepFormService.confirmBtnClicked">
         <form-part-1 class="form_part"></form-part-1>
