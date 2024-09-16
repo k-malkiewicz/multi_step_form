@@ -49,7 +49,7 @@ form {
     &.confirmed {
         .form_part {
             transform: translateY(-100%);
-            visibility: hidden;
+            visibility: hidden !important;
         }
         + .form_action_btns {
             visibility: hidden;
